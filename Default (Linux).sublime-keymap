@@ -1,0 +1,20 @@
+[
+	{ "keys": ["alt+q"],
+	 "command": "toggle_side_bar"
+	},
+	{ "keys": ["alt+r"], "command": "reindent"},
+  { "keys": ["ctrl+w"], "command": "expand_region" },
+  {
+      "keys": ["ctrl+shift+w"],
+      "command": "expand_region",
+      "args": {"undo": true},
+      "context": [{ "key": "expand_region_soft_undo" }]
+  },
+  { "keys": ["ctrl+shift+i"], "command": "auto_pep8", "args": {"preview": true} },
+  { "keys": ["ctrl+i"], "command": "auto_pep8", "args": {"preview": false} },
+  { "keys": ["alt+j"], "command": "duplicate_line" },
+  { "keys": ["alt+shift+k"], "command": "select_lines", "args": {"forward": false} },
+  { "keys": ["alt+k"], "command": "select_lines", "args": {"forward": true} },
+  { "keys": ["alt+,"], "command": "focus_neighboring_group", "args": {"forward": false} },
+  { "keys": ["alt+."], "command": "focus_neighboring_group" },
+]

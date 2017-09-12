@@ -1,0 +1,42 @@
+<snippet>
+    <content><![CDATA[
+int djk(vector<vector<pii > > g, int src, int dest) {
+
+    // rep(i,0,nc)
+    //     rep(j, 0, sz(g[i])-1)
+    //         cerr << g[i][j].first << " \n"[j==sz(g[i])-1];
+    // rep(i,0,nc)
+    //     rep(j, 0, sz(g[i])-1)
+    //         cerr << g[i][j].second << " \n"[j==sz(g[i])-1];
+    int dis[nc];
+    memset(dis,0x3f,sizeof(dis));
+    priority_queue<pii, vector<pii >, greater<pii> > pq;
+    int u, w;
+    dis[src]= 0;
+    pq.push({dis[src], src});
+    while(pq.size()) {
+        u = pq.top().second;
+        w = pq.top().first;
+        // cerr << pq.size() << " " << u << " " << pq.top().second << endl;
+        pq.pop();
+        if (u == dest)break;
+        if (dis[u] < w)continue;
+        // show(dis, nc);
+        for (int i = 0; i < g[u].size(); i++) {
+            int child = g[u][i].first;
+            int new_cost = dis[u]+g[u][i].second;
+            // cerr << u  << " u " << child <<  " " << new_cost << endl;
+            if (dis[child] > new_cost) {
+                dis[child] = new_cost;
+                pq.push({new_cost, child});
+            }
+        }
+    }
+    return dis[dest];//what to print if unreachable
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>djk</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

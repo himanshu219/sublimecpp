@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+#define MAXN 30001 
+
+int bit[MAXN];
+
+void update(int i, int val, int n) {
+    while (i <= n) {
+        bit[i] += val;
+        i += i&-i;
+    }
+}
+
+int query(int x) {
+    int sm = 0;
+    while (x > 0) {
+        sm += bit[x];        
+        x -= x&-x;
+    }
+    return sm;
+}
+]]></content>    
+    <tabTrigger>bite</tabTrigger>    
+    <scope>source.c++</scope>
+</snippet>
+

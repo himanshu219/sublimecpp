@@ -1,0 +1,20 @@
+<snippet>
+    <content><![CDATA[
+#define mp             make_pair
+#define pb             push_back
+#define fi             first
+#define se             second
+#define sz(x)          (int)((x).size())
+template<typename T>
+using min_priority_queue = priority_queue<T, vector<T>, greater<T> >;//template aliasing
+typedef pair<int, int> pii;
+typedef vector<int>    vi;
+typedef vector<vi>     vii;
+#define fore(itr, x)   for (__typeof(x.begin()) itr = x.begin(); itr != x.end(); itr ++)
+#define forei(itr, x)  for (__typeof(x.end()) itr = x.end() - 1; itr != x.begin() - 1; itr --)
+#define all(x)         (x).begin(), (x).end()
+]]></content>
+    <tabTrigger>stl</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

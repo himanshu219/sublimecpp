@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+for gap in xrange(N):
+    for L in range(N-gap):
+        R = L+gap
+        if (L==R):continue
+        print >> sys.stderr, L, R
+        for m in xrange(L, R):
+            print >> sys.stderr, m
+]]></content>
+    <tabTrigger>dpsubstr</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

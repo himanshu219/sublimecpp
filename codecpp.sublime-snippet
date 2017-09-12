@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+#include <bits/stdc++.h>
+using namespace std;
+
+#define fill(x, y)     memset(x, y, sizeof(x))
+#define sci(x)         int x;       scanf("%d", &x)
+#define sl(n) scanf("%lld", &n)
+#define rep(i, x, y)   for (__typeof(x) i = x; i <= y; i ++)
+#define repi(i, x, y)  for (__typeof(x) i = x; i >= y; i --)
+typedef long long  ll;
+#define inf (1<<30)
+#define eps 1e-9
+#define mod 1e9 + 7
+
+int main(int argc, char const *argv[]) {
+    ios_base::sync_with_stdio(0); //will not work with scanf
+
+    return 0;
+}
+
+]]></content>
+    <tabTrigger>code</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

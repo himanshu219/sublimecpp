@@ -1,0 +1,8 @@
+// These settings override both User and Default settings for the Python syntax
+{
+    // "auto_complete": false,
+    "auto_complete_triggers": [
+        {"selector": "source.python",
+         "characters": "."
+     }],
+}

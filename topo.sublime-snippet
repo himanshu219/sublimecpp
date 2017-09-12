@@ -1,0 +1,35 @@
+<snippet>
+    <content><![CDATA[
+int vis[MAX],in_deg[MAX]; vi tp;
+void iterative_topo(vii &adj, int n) {
+    min_priority_queue<int> que;
+    rep(i,1,n)
+        for(auto j: adj[i])
+            in_deg[j] = in_deg[j] + 1;
+    rep(i,1,n)
+        if (!in_deg[i]) {
+            que.push(i);
+            vis[i] = 1;
+        }
+
+    while (!que.empty()) {
+        int cur = que.top();
+        que.pop();
+        tp.pb(cur);
+        // debug(cur);
+        for(auto child: adj[cur]) {
+            // debug(child);
+            if (!vis[child]) {
+                in_deg[child] = in_deg[child] - 1;
+                if (in_deg[child]==0) {
+                    que.push(child);
+                    vis[child]=1;
+                }
+            }
+        }
+    }
+}
+]]></content>
+    <tabTrigger>bitmask</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
