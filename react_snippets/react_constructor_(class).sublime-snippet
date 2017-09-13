@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+constructor(props) {
+    super(props);
+    [
+        '${0}',
+    ].forEach((method) => { this[method] = this[method].bind(this); });
+}
+]]></content>
+    <tabTrigger>constructor</tabTrigger>
+    <scope>source.js meta.class.js -(meta meta)</scope>
+    <description>React: constructor(props) {…}</description>
+</snippet>

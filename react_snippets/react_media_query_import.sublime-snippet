@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+import MediaQuery from 'react-media';
+import { variables } from 'utils/variables';
+]]></content>
+    <tabTrigger>media</tabTrigger>
+    <scope>source.js (meta)</scope>
+    <description>ReactMedia: import MediaQuery from 'rm'</description>
+</snippet>

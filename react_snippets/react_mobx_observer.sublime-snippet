@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+@inject('${0}')
+@observer
+]]></content>
+    <tabTrigger>inject</tabTrigger>
+    <scope>source.js (meta)</scope>
+    <description>Mobx: @inject(store)</description>
+</snippet>

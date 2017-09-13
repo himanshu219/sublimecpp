@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+import get from 'lodash/get';
+import Shell from 'modules/shell';
+]]></content>
+    <tabTrigger>shell</tabTrigger>
+    <scope>source.js (meta)</scope>
+    <description>modules: import Shell</description>
+</snippet>
