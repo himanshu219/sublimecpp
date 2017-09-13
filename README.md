@@ -1,2 +1,2 @@
 # sublimecpp
-It contains sublime settings/packages/snippets for c++ competitive programming
+It contains sublime settings/packages/snippets/builds for c++/react development
