@@ -1,0 +1,44 @@
+<snippet>
+    <content><![CDATA[
+#define MAX 100001
+int vis[MAX];
+vii *adj;
+void dfs(int src, stack<int> &finish) {
+    vis[src] = 1;
+    for(auto child : (*adj)[src]) {
+        if (!vis[child]){
+            dfs(child, finish);
+        }
+    }
+    finish.push(src);
+}
+int nn, ne, u, v;
+cin >> nn >> ne;
+vii oadj(nn+1, vector<int>()), radj(nn+1, vector<int>());
+rep(i,0,ne-1) {
+    cin >> u >> v;
+    oadj[u].pb(v);
+    radj[v].pb(u);
+}
+adj = &oadj;
+stack<int > finish;
+rep(i,1,nn) {
+    if (!vis[i])dfs(i,finish);
+}
+adj = &radj;
+fill(vis,0);
+vi ans(nn+1,0);
+while (!finish.empty()) {
+    u = finish.top();finish.pop();
+    if (!vis[u]){
+        stack<int > scc;
+        dfs(u, scc);
+        //scc contains ele of one scc
+    }
+}
+]]></content>
+    <tabTrigger>scc</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+
+

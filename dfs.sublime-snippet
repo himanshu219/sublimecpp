@@ -1,0 +1,41 @@
+<snippet>
+    <content><![CDATA[
+int vis[MAX], level[MAX], reach[MAX], parent[MAX];
+vii *adj;
+int dfs(int src) {
+    vis[src] = 1;
+    reach[src]= level[src];
+    int cnt = 0, child_cnt;
+    for(auto child : (*adj)[src]) {
+        if (!vis[child]) {
+            level[child] = level[src]+1;
+            parent[child] = src;
+            child_cnt = dfs(child);
+            cnt += child_cnt;
+            reach[src] = min(reach[src], reach[child]);
+            //src-child is critical edge reach[child] > level[src]
+            //src-child is critical vertex if it's not root or no of children > 1 if it's root
+        } else if (child != parent[src]) { //grey edges
+            reach[src]=min(reach[src], level[child]);
+        }
+    }
+    return cnt+1;
+}
+int nn, ne, u, v;
+cin >> nn >> ne;
+vii oadj(nn+1, vector<int>());
+rep(i,0,ne-1) {
+    cin >> u >> v;
+    oadj[u].pb(v);
+    oadj[v].pb(u);
+}
+adj = &oadj;
+rep(i,1,nn) {
+    if (!vis[i]) {
+        dfs(i);
+    }
+}
+]]></content>
+    <tabTrigger>dfs</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>

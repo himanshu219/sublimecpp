@@ -1,7 +1,9 @@
 <snippet>
     <content><![CDATA[
 #define mp             make_pair
+#define mk             make_tuple
 #define pb             push_back
+#define eb             emplace_back
 #define fi             first
 #define se             second
 #define sz(x)          (int)((x).size())
