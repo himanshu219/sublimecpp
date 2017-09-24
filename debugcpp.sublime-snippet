@@ -10,16 +10,18 @@ vector<string> split(const string& s, char c) {
         v.emplace_back(x);
     return move(v);
 }
-void err(vector<string>::iterator it) {}
+void err(vector<string>::iterator it) {cerr << endl;}
 template<typename T, typename... Args>
 void err(vector<string>::iterator it, T a, Args... args) {
-    cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
+    cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << ", ";
     err(++it, args...);
 }
 #define debuga(a, n) {cerr << #a << " => ";for(int i=0;i<n;i++) cerr <<a[i]<<" \n"[i == (n-1)];}
 #define debugv(x) {cerr << #x << " => ";for (auto ele: x)cerr << ele << " ";cerr << endl;}
 template<typename T>
 void debug2d(T mat,int n, int m) {rep(i,0,n-1) rep(j,0,m-1) cerr <<mat[i][j]<<" \n"[j == (m-1)]; cout<<endl; }
+template<typename T>
+void debug2dv(T v2) {for(auto v1: v2) debugv(v1);}
 void tick(){static clock_t oldt;clock_t newt=clock();double diff=1.0*(newt-oldt)/CLOCKS_PER_SEC;oldt=newt;debug(diff);}
 ]]></content>
     <tabTrigger>debug</tabTrigger>

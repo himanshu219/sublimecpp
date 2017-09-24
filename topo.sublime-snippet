@@ -30,6 +30,6 @@ void iterative_topo(vii &adj, int n) {
     }
 }
 ]]></content>
-    <tabTrigger>bitmask</tabTrigger>
+    <tabTrigger>topo</tabTrigger>
     <scope>source.c++</scope>
 </snippet>

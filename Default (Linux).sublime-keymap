@@ -3,9 +3,9 @@
   { "keys": ["alt+r"], "command": "reindent"},
   { "keys": ["alt+j"], "command": "duplicate_line" },
   //expand region
-  { "keys": ["ctrl+w"], "command": "expand_region" },
+  { "keys": ["ctrl+e"], "command": "expand_region" },
   {
-      "keys": ["ctrl+shift+w"],
+      "keys": ["ctrl+shift+e"],
       "command": "expand_region",
       "args": {"undo": true},
       "context": [{ "key": "expand_region_soft_undo" }]
