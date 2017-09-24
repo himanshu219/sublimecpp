@@ -9,11 +9,10 @@
 		"subpixel_antialias",
 		"no_bold"
 	],
-	"font_size": 11.0,
+	"font_size": 13.0,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"All Autocomplete",
 		"Vintage"
 	],
 	"line_padding_bottom": 0,
