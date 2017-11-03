@@ -19,7 +19,7 @@
     { "keys": ["alt+j"], "command": "jump_back" },
     { "keys": ["alt+k"], "command": "jump_forward" },
     { "keys": ["alt+q"], "command": "toggle_side_bar" },
-    { "keys": ["super+j"], "command": "duplicate_line" },
+    { "keys": ["alt+p"], "command": "duplicate_line" },
     //expand region
     { "keys": ["super+e"], "command": "expand_region" },
     {
@@ -35,5 +35,11 @@
     { "keys": ["option+shift+i"], "command": "show_panel", "args": {"panel": "incremental_find", "reverse": true} },
     { "keys": ["alt+shift+tab"], "command": "prev_view" },
     { "keys": ["alt+tab"], "command": "next_view" },
+    //moves lines up and down
+    { "keys": ["super+shift+up"], "command": "swap_line_up" },
+    { "keys": ["super+shift+down"], "command": "swap_line_down" },
+
+    //goto line
+    { "keys": ["super+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
 
 ]

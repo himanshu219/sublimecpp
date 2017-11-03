@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+#define N 100001
+int p[N],r[N];
+int fpar (int x) {
+  return (p[x] == x)? x : p[x]=fpar(p[x]);
+}
+void merge(int x, int y) {
+  int px = fpar(x);
+  int py = fpar(y);
+  if (r[px] > r[py])
+      p[py] = px;
+  else
+      p[px] = py;
+  if (r[px] == r[py])r[py] += 1;
+}
+void init() {
+  rep(i,0,n-1){p[i] = i;r[i]=0;}
+}
+
+]]></content>
+    <tabTrigger>dsu</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+
+
