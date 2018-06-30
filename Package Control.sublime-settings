@@ -9,6 +9,8 @@
 		"ExpandRegion",
 		"Jedi - Python autocompletion",
 		"Package Control",
-		"SideBarEnhancements"
+		"Python Checker",
+		"SideBarEnhancements",
+		"Virtualenv"
 	]
 }
