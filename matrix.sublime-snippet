@@ -1,0 +1,77 @@
+<snippet>
+    <content><![CDATA[
+
+vii memo[55];
+
+vii identity(int n) {
+    vii ident(n, vector<int>(n, 0));
+    for (int i = 0; i < n; i++)
+        ident[i][i] = 1;
+
+    return ident;
+}
+
+vii mul(vii &a, vii &b) {
+    // assert(a[0].size() == b.size());
+    // nm xy
+    int mod = 1000000007;
+    int n = a.size(), m = a[0].size(), y = b[0].size();
+    vii res(n, vector<int>(y, 0));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < y; j++) {
+            res[i][j] = 0;
+            for (int k = 0; k < m; k++) {
+                res[i][j] = (res[i][j] + 1ll * a[i][k] * b[k][j] % mod) % mod;
+            }
+        }
+    }
+    // debug2dv(res);
+    return res;
+}
+
+
+vii binPow(vii a, long long p) {
+    vii result = identity(a.size());
+    ll pi = 0;
+    while (p) {
+        if (p & 1) {
+            result = mul(result, memo[pi]);
+            // debug(p, pi);
+            // debug2dv(result);
+        }
+        pi += 1;
+        p >>= 1;
+
+    }
+    return result;
+}
+
+
+vii binPow2(vii a, long long p) {
+    vii result = identity(a.size());
+    while (p) {
+        // debug(p)
+        if (p & 1)
+            result = mul(result, a);
+
+        a = mul(a, a);
+        p >>= 1;
+    }
+    return result;
+}
+
+void precompute(vii a) {
+
+    memo[0] = a;
+    for (ll i = 1;i < 55; i++) {
+        a = mul(a,a);
+        memo[i] = a;
+    }
+}
+
+
+]]></content>
+    <tabTrigger>matrix</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

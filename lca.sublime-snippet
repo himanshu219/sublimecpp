@@ -1,0 +1,56 @@
+<snippet>
+    <content><![CDATA[
+
+int  level[MAX], parent[MAX];
+int partable[MAX][MAXLEVEL];
+vii *adj;
+void dfs(int src, int prev) {
+    level[src] = (prev == -1) ? 0 : level[prev] + 1;
+    parent[src] = prev;
+    for (auto child : (*adj)[src]) {
+        if ((child != prev) && (child != src)) {
+            dfs(child, src);
+        }
+    }
+}
+
+int LCA(int u, int v) {
+    if (level[u] < level[v])
+        return LCA(v, u);
+    int diff = level[u] - level[v];
+    rep(i, 0, MAXLEVEL - 1) {
+        if ((diff >> i) & 1) {
+            u = partable[u][i];
+        }
+    }
+    if (v != u) {
+        repi(i, MAXLEVEL - 1, 0) {
+            if (partable[u][i] != partable[v][i]) {
+                u = partable[u][i];
+                v = partable[v][i];
+            }
+        }
+        u = partable[u][0];
+    }
+    return u;
+}
+
+void LCAinit(vii &tree, int nn) {
+    adj = &tree;
+    memset(parent, -1, sizeof(parent));
+    dfs(1, -1);
+    for (int i = 0; i < MAXLEVEL; i++) {
+        for (int node = 1; node <= nn; node++) {
+            if (i == 0) partable[node][i] = parent[node];
+            else if (partable[node][i - 1] != -1)
+                partable[node][i] = partable[partable[node][i - 1]][i - 1];
+        }
+    }
+}
+
+]]></content>
+    <tabTrigger>lca</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+
+

@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+    vi v;
+    // rememeber use v is 0 indexed and arr is 1 indexed
+    sort(all(v));
+    rep(i,1,n) {
+        arr[i] = (lower_bound(all(v), arr[i]) - v.begin())+1;
+    }
+
+]]></content>
+    <tabTrigger>compress</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

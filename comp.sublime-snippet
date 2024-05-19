@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+
+struct cmp {
+    bool operator()(int a, int b) {
+        return occurrences[a] < occurrences[b];
+    }
+};
+//set<int, cmp> s;
+//priority_queue<int, vector<int>, cmp> pq;
+
+]]></content>
+    <tabTrigger>comp</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,45 @@
+<snippet>
+    <content><![CDATA[
+long long int maxflow_bfs(vii &adj, vii &res_capacity, int s, int t, vi &par) {
+    queue<pii> q;
+    q.push({s,inf});
+    fill(all(par), -1);
+    par[s] = -2;
+    while (!q.empty()) {
+        pii node = q.front();q.pop();
+        int cur = node.first;
+        int cur_flow = node.second;
+        // debug(cur);
+        for (int child: adj[cur]) {
+            if ((par[child] == -1) && res_capacity[cur][child] > 0) {
+                par[child] = cur;
+                // debug(child, res_capacity[cur][child])
+                int new_flow = min(cur_flow, res_capacity[cur][child]);
+                if (child == t)
+                    return new_flow;
+                q.push({child, new_flow});
+
+            }
+        }
+    }
+    return 0;
+}
+long long int solve(vii &adj, vii &res_capacity, int s, int t, vi &par) {
+    long long int maxflow=0, flow;
+    while ((flow = maxflow_bfs(adj, res_capacity, s, t, par))) {
+        int cur = t, prev;
+        // debug(flow);
+        while (cur != s) {
+            prev = par[cur];
+            res_capacity[prev][cur] -= flow;
+            res_capacity[cur][prev] += flow;
+            cur = prev;
+        }
+        maxflow += flow;
+    }
+    return maxflow;
+}
+]]></content>
+    <tabTrigger>maxflow</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>

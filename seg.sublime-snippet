@@ -1,0 +1,129 @@
+<snippet>
+    <content><![CDATA[
+#define MAX 1000000
+inline int left(int p) { return p << 1; }
+inline int right(int p) { return (p << 1) + 1; }
+
+struct Node {
+    ULL sum = 0;
+    int lazy = INT_MIN;
+
+    void set(ULL val) {
+        sum = val;
+    }
+    void combine(Node &a, Node &b) {
+        sum = a.sum + b.sum;
+    }
+};
+
+int n;
+int arr[MAX];
+Node st[3 * MAX];
+
+// take idx = 1 as parent finding easier
+// this is [] both inclusive therefore condition l==r
+// else condition will be  r-l < 2 for [l,r)
+//int x = (int)(ceil(log2(n)));
+//int max_size = 2*(int)pow(2, x) - 1;
+// in general take 4N as seg size and use .resize()
+void build(int l, int r, int idx) {
+    if (l == r) {
+        st[idx].set(arr[l]);
+        return;
+    }
+    int m = l + (r-l)/2;
+    build(l,m,left(idx));
+    build(m+1,r,right(idx));
+    st[idx].combine(st[left(idx)], st[right(idx)]);
+}
+Node query(int &start, int &end, int l, int r, int idx) {
+    Node ret;
+    if (r < start || l > end)
+        return ret;
+    if (l >= start && r <= end) {
+        // debug(start, end, l, r, idx, t[idx]);
+        return st[idx];
+    }
+    int m = l + (r-l)/2;
+    Node &left = query(start,end,l,m,left(idx));
+    Node &rgt = query(start,end,m+1,r,right(idx));
+    ret.combine(left, rgt);
+    return ret;
+}
+
+void point_upd(int &updidx, int l, int r, int idx, int &val) {
+    if (l == r) {
+        st[idx].set(val);
+        arr[l]= val;
+        return;
+    }
+    int m = l + (r-l)/2;
+    if (updidx <= m)
+        point_upd(updidx, l, m, left(idx), val);
+    else
+        point_upd(updidx, m+1, r, right(idx), val);
+    st[idx].combine(st[left(idx)], st[right(idx)]);
+}
+
+void range_upd(int idx, int l, int r, int &start, int &end, int &val) {
+    if (r < start || l > end)
+        return;
+
+    if (l == r) {
+        st[idx].set(val);
+        arr[l]= val;
+        return;
+    }
+    int m = l + (r-l)/2;
+    range_upd(left(idx), l, mid, start, end, val);
+    range_upd(right(idx), mid + 1, r, start, end, val);
+    // pushup
+    st[idx].combine(st[left(idx)], st[right(idx)]);
+}
+
+// lazy propagation
+void pushDown(int idx, int l, int r) {
+    if (st[idx].lazy == INT_MIN) return;
+    int mid = l + (r-l)/2;
+    st[left(idx)].setSum((ULL)(mid-l+1) * st[idx].lazy);
+    st[right(idx)].setSum((ULL)(r-mid+1) * st[idx].lazy);
+    st[left(idx)].lazy = st[right(idx)].lazy = st[idx].lazy;
+    st[idx].lazy = INT_MIN;
+}
+
+Node lazy_query(int &start, int &end, int l, int r, int idx) {
+    Node ret;
+    if (r < start || l > end)
+        return ret;
+    pushDown(idx, l, r);
+    if (l >= start && r <= end) {
+        return st[idx];
+    }
+    int m = l + (r-l)/2;
+    Node &left = lazy_query(start,end,l,m,left(idx));
+    Node &rgt = lazy_query(start,end,m+1,r,right(idx));
+    ret.combine(left, rgt);
+    return ret;
+}
+
+void lazy_range_upd(int idx, int l, int r, int &start, int &end, int &val) {
+    if (r < start || l > end)
+        return;
+    pushDown(idx, l, r);
+    if (l >= start && r <= end) {
+        st[idx].setSum((ULL)(r - l + 1) * val);
+        if (l != r) st[idx].lazy = val;
+        return;
+    }
+    int m = l + (r-l)/2;
+    lazy_range_upd(left(idx), l, mid, start, end, val);
+    lazy_range_upd(right(idx), mid + 1, r, start, end, val);
+    // pushup
+    st[idx].combine(st[left(idx)], st[right(idx)]);
+}
+
+]]></content>
+    <tabTrigger>seg</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

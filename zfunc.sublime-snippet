@@ -1,0 +1,21 @@
+<snippet>
+    <content><![CDATA[
+vi zfunc(string s) {
+    int n = (int) s.length(),l=0,r=0;
+    vi z(n);
+
+    rep(i,1,n-1) {
+        if (i <= r)
+            z[i] = min(z[i-l], r-i+1);
+        while ( (i+z[i]) < n && s[z[i]] == s[i+z[i]])z[i]++;
+        if (i + z[i] - 1 > r)
+            l = i, r = i + z[i] - 1;
+        // debug(i,l,r,z[i]);
+    }
+    return z;
+}
+]]></content>
+    <tabTrigger>zfn</tabTrigger>
+    <scope>source.c++</scope>
+</snippet>
+

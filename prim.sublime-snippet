@@ -1,0 +1,46 @@
+<snippet>
+    <content><![CDATA[
+
+typedef pair<ll, int> PII;
+
+const int MAX = 1e6 + 1;
+vector < vector <PII> > *adj;
+
+void prim(int src) {
+
+    min_priority_queue<PII> pq;
+    ll mincost = 0;
+    vector<PII> mst;
+    PII p;
+    int u, v;
+
+    int nn = (*adj).size();
+    vector<bool> marked(nn+1, false);
+    pq.push(mp(0, src));
+    while(!pq.empty())
+    {
+        p = pq.top(); pq.pop();
+        u = p.second;
+        // Checking for cycle
+        if(marked[u] == true)
+            continue;
+        mincost += p.first;
+        mst.pb(p);
+        marked[u] = true;
+        for(auto child: (*adj)[u])
+        {
+            v = child.second;
+            if(marked[v] == false)
+                pq.push(child);
+        }
+    }
+    // debug(mincost)
+    cout << mincost << endl;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>prim</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>
+
