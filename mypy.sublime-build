@@ -1,5 +1,5 @@
 {
-    "shell_cmd": "python $file_name<input.txt>output.txt",
+    "shell_cmd": "python3 $file_name < ~/git/coding/input.txt > ~/git/coding/output.txt",
     "selector": "source.python",
     "working_dir": "$file_path"
 }

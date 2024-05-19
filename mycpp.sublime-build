@@ -1,6 +1,10 @@
 {
-"cmd" : ["g++ -std=c++11 $file_name -o $file_base_name.out && timeout 4s ./$file_base_name.out<input.txt>output.txt"],
-"selector" : "source.c, source.c++, source.cxx, source.cpp",
+// "cmd" : ["g++ -std=c++14 $file_name -o $file_base_name.out && ./$file_base_name.out<~/git/coding/input.txt>~/git/coding/output.txt && rm ./$file_base_name.out"],
+"cmd" : ["/usr/local/bin/g++-14 -std=gnu++20 -O2 -Wno-unused-value -Wall -Wextra  -Wconversion  -ld_classic -DONLINEJUDGE $file_name -o $file_base_name.out && /usr/local/opt/coreutils/libexec/gnubin/timeout 4s ./$file_base_name.out && rm ./$file_base_name.out"],
+"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+// -Wall -Wextra -Wconversion -static -DONLINE_JUDGE -Wl,--stack=268435456 -O2
+// -fsanitize=undefined -fsanitize=address
+"selector" : "source.c, source.c++, source.cpp",
 "shell": true,
-"working_dir" : "$file_path"
+"working_dir" : "${file_path}"
 }
